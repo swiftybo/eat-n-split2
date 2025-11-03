@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  height: 100vh;
+  color: rgb(47, 47, 47);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+}
+
+#root {
+  display: flex;
+}
+
+#friends_display {
+  position: relative;
+  right: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  display: flex;
+  padding: 0.5rem;
+  width: 35rem;
+  border-radius: 1rem;
+  align-items: center;
+}
+
+.icon:hover {
+  background-color: rgb(252, 225, 176);
+}
+
+.profile_pic {
+  border-radius: 50%;
+  width: 6rem;
+  height: 6rem;
+  margin: 1rem;
+}
+
+.profile_summary {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  width: 18rem;
+}
+
+.profile_name {
+  margin: 1rem 1rem 0 1rem;
+}
+
+.profile_statement {
+  margin: 1rem;
+  font-size: 1.25rem;
+}
+
+.owe {
+  color: red;
+}
+
+.due {
+  color: green;
+}
+
+.profile_button {
+  height: 2.5rem;
+  width: 5rem;
+  padding: 0.5rem;
+  background-color: orange;
+  border-radius: 0.5rem;
+  border: 0.25px solid grey;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.friend_form {
+  background-color: rgb(252, 225, 176);
+  width: 35rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.form_field {
+  margin: 1rem 1rem 1.5rem 1rem;
+}
+
+.form_label {
+  display: inline-block;
+  width: 15rem;
+  font-weight: 500;
+}
+
+.form_input {
+  width: 50%;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  border-color: rgb(246, 203, 122);
+}
+
+.form_input:focus {
+  border-color: rgb(245, 176, 47);
+}
+
+.bill_form {
+  position: absolute;
+  left: 100%;
+  background-color: rgb(252, 225, 176);
+  width: 40rem;
+  border-radius: 1rem;
+  margin-left: 2rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.bill_title {
+  margin: 2rem;
+}
+
+.bill_label {
+  display: inline-block;
+  width: 22rem;
+  font-weight: 500;
+}
+
+.bill_input {
+  width: 30%;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  border-color: rgb(246, 203, 122);
+}
