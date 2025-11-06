@@ -1,4 +1,7 @@
-import FriendList from "./components/FriendList";
+import { useState } from "react";
+
+import FriendList from "./components/FriendList.jsx";
+import AddNewFriendForm from "./components/AddNewFriendForm.jsx";
 
 const firstFriends = [
   {
@@ -22,9 +25,34 @@ const firstFriends = [
 ];
 
 export default function App() {
+  const [friends, setFriends] = useState(firstFriends);
+
+  const [newName, setNewName] = useState("");
+  const [newImgURL, setNewImgURL] = useState("");
+
+  function addNewFriend(newFriendName, newFriendImg) {
+    const newFriend = {
+      id: crypto.randomUUID(),
+      name: newFriendName,
+      img: newFriendImg,
+      balance: 0,
+    };
+    const newFriendsList = [...friends, newFriend];
+    setFriends(newFriendsList);
+    setNewName("");
+    setNewImgURL("");
+  }
+
   return (
     <>
-      <FriendList friends={firstFriends} />
+      <FriendList friends={friends} />
+      <AddNewFriendForm
+        handleName={(event) => setNewName(event.target.value)}
+        newFriendName={newName}
+        handleImage={(event) => setNewImgURL(event.target.value)}
+        newFriendImage={newImgURL}
+        handleNewFriend={() => addNewFriend(newName, newImgURL)}
+      />
     </>
   );
 }
