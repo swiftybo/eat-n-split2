@@ -1,1 +1,15 @@
-export default function FriendList() {}
+import FriendIcon from "./FriendIcon.jsx";
+
+export default function FriendList({ friends }) {
+  return (
+    <>
+      {friends.map((friend) => (
+        <FriendIcon
+          name={friend.name}
+          img={friend.img}
+          balance={friend.balance}
+        />
+      ))}
+    </>
+  );
+}

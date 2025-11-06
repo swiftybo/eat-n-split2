@@ -1,6 +1,6 @@
-import { useState } from "react";
+import FriendList from "./components/FriendList";
 
-let firstFriends = [
+const firstFriends = [
   {
     id: 282,
     name: "Anthony",
@@ -21,4 +21,10 @@ let firstFriends = [
   },
 ];
 
-export default function App() {}
+export default function App() {
+  return (
+    <>
+      <FriendList friends={firstFriends} />
+    </>
+  );
+}
