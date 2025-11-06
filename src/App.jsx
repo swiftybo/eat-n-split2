@@ -33,6 +33,13 @@ export default function App() {
     "https://i.pravatar.cc/60?{img=48}"
   );
 
+  // TODO: Can probably improve this with a useReducer() function
+  const [billDetails, setBillDetails] = useState({
+    value: 0,
+    selfExpense: 0,
+    billPayer: "You",
+  });
+
   function addNewFriend(newFriendName, newFriendImg) {
     const newFriend = {
       id: crypto.randomUUID(),
