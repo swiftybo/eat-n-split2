@@ -4,10 +4,13 @@ export default function BillForm({
   handleSelfExpense,
   friendExpenseRef,
   handlePayer,
+  currentFriend,
 }) {
   return (
     <form className="bill_form">
-      <h3 className="bill_title">SPLIT A BILL WITH X</h3>
+      <h3 className="bill_title">
+        SPLIT A BILL WITH {currentFriend.toUpperCase()}
+      </h3>
       <div className="form_field">
         <label className="bill_label">💰 Bill Value</label>
         <input
@@ -27,7 +30,7 @@ export default function BillForm({
         ></input>
       </div>
       <div className="form_field">
-        <label className="bill_label">🫂 {name}'s expense</label>
+        <label className="bill_label">🫂 {currentFriend}'s expense</label>
         <input
           className="bill_input"
           type="text"
@@ -43,7 +46,7 @@ export default function BillForm({
           onChange={handlePayer}
         >
           <option value="You">You</option>
-          <option value="Friend">Friend Name</option>
+          <option value={currentFriend}>{currentFriend}</option>
         </select>
       </div>
       <button

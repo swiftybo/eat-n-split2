@@ -1,4 +1,4 @@
-export default function FriendIcon({ name, img, balance }) {
+export default function FriendIcon({ name, img, balance, handleClick }) {
   let oweStatement = "";
   let oweClass = "";
 
@@ -20,7 +20,9 @@ export default function FriendIcon({ name, img, balance }) {
         <h2 className="profile_name">{name}</h2>
         <p className={oweClass}>{oweStatement}</p>
       </div>
-      <button className="profile_button">Select</button>
+      <button value={name} className="profile_button" onClick={handleClick}>
+        Select
+      </button>
     </div>
   );
 }

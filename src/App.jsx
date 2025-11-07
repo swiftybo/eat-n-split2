@@ -37,6 +37,7 @@ export default function App() {
     selfExpense: 0,
     billPayer: "You",
   });
+  const [selectedFriend, setSelectedFriend] = useState("");
 
   let friendExpense = useRef("NaN");
 
@@ -75,10 +76,14 @@ export default function App() {
     setNewImgURL("");
   }
 
+  function openFriend(event) {
+    setSelectedFriend(event.target.value);
+  }
+
   return (
     <div className="content">
       <section id="left">
-        <FriendList friends={friends} />
+        <FriendList friends={friends} selectFriend={openFriend} />
         <AddNewFriendForm
           // function to display new friend name in input field
           handleName={(event) => setNewName(event.target.value)}
@@ -98,9 +103,13 @@ export default function App() {
           handleValue={handleNewValue}
           handleSelfExpense={handleNewSelfExpense}
           friendExpenseRef={friendExpense}
-          handlePayer={(event) =>
-            setBillInputs({ ...billInputs, billPayer: event.target.value })
-          }
+          handlePayer={(event) => {
+            return setBillInputs({
+              ...billInputs,
+              billPayer: event.target.value,
+            });
+          }}
+          currentFriend={selectedFriend}
         />
       </section>
     </div>
