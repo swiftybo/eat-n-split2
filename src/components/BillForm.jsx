@@ -3,6 +3,7 @@ export default function BillForm({
   handleValue,
   handleSelfExpense,
   friendExpenseRef,
+  handlePayer,
 }) {
   return (
     <form className="bill_form">
@@ -38,8 +39,8 @@ export default function BillForm({
         <label className="bill_label">🤑 Who is paying the bill</label>
         <select
           className="bill_input"
-          // value={targetedPayee}
-          // onChange={handleTargetPayee}
+          value={billDetails.billPayer}
+          onChange={handlePayer}
         >
           <option value="You">You</option>
           <option value="Friend">Friend Name</option>

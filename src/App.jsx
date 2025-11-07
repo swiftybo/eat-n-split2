@@ -27,12 +27,10 @@ const firstFriends = [
 
 export default function App() {
   const [friends, setFriends] = useState(firstFriends);
-
   const [newName, setNewName] = useState("");
   const [newImgURL, setNewImgURL] = useState(
     "https://i.pravatar.cc/60?{img=48}"
   );
-
   // TODO: Can probably improve this with a useReducer() function
   const [billInputs, setBillInputs] = useState({
     value: 0,
@@ -100,6 +98,9 @@ export default function App() {
           handleValue={handleNewValue}
           handleSelfExpense={handleNewSelfExpense}
           friendExpenseRef={friendExpense}
+          handlePayer={(event) =>
+            setBillInputs({ ...billInputs, billPayer: event.target.value })
+          }
         />
       </section>
     </div>
