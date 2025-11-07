@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import FriendList from "./components/FriendList.jsx";
 import AddNewFriendForm from "./components/AddNewFriendForm.jsx";
@@ -34,11 +34,35 @@ export default function App() {
   );
 
   // TODO: Can probably improve this with a useReducer() function
-  const [billDetails, setBillDetails] = useState({
+  const [billInputs, setBillInputs] = useState({
     value: 0,
     selfExpense: 0,
     billPayer: "You",
   });
+
+  let friendExpense = useRef("NaN");
+
+  function handleNewValue(event) {
+    setBillInputs({ ...billInputs, value: +event.target.value });
+    friendExpense.current = calculateFriendExpense(
+      +event.target.value,
+      billInputs.selfExpense
+    );
+  }
+
+  function handleNewSelfExpense(event) {
+    setBillInputs({ ...billInputs, selfExpense: +event.target.value });
+    friendExpense.current = calculateFriendExpense(
+      billInputs.value,
+      +event.target.value
+    );
+  }
+
+  function calculateFriendExpense(totalBill, ownExpense) {
+    const remainingExpense = totalBill - ownExpense;
+    if (remainingExpense <= 0) return NaN;
+    else return remainingExpense;
+  }
 
   function addNewFriend(newFriendName, newFriendImg) {
     const newFriend = {
@@ -71,7 +95,12 @@ export default function App() {
         />
       </section>
       <section id="right">
-        <BillForm />
+        <BillForm
+          billDetails={billInputs}
+          handleValue={handleNewValue}
+          handleSelfExpense={handleNewSelfExpense}
+          friendExpenseRef={friendExpense}
+        />
       </section>
     </div>
   );

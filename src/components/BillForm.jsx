@@ -1,4 +1,9 @@
-export default function BillForm() {
+export default function BillForm({
+  billDetails,
+  handleValue,
+  handleSelfExpense,
+  friendExpenseRef,
+}) {
   return (
     <form className="bill_form">
       <h3 className="bill_title">SPLIT A BILL WITH X</h3>
@@ -7,8 +12,8 @@ export default function BillForm() {
         <input
           className="bill_input"
           type="text"
-          // value={billDetails.value}
-          // onChange={handleValue}
+          value={billDetails.value}
+          onChange={handleValue}
         ></input>
       </div>
       <div className="form_field">
@@ -16,8 +21,8 @@ export default function BillForm() {
         <input
           className="bill_input"
           type="text"
-          // value={billDetails.selfExpense}
-          // onChange={handleSelfExpense}
+          value={billDetails.selfExpense}
+          onChange={handleSelfExpense}
         ></input>
       </div>
       <div className="form_field">
@@ -25,7 +30,7 @@ export default function BillForm() {
         <input
           className="bill_input"
           type="text"
-          // value={friendExpenseRef.current}
+          value={friendExpenseRef.current}
           disabled
         ></input>
       </div>
