@@ -39,7 +39,7 @@ export default function App() {
   });
   const [selectedFriend, setSelectedFriend] = useState("");
 
-  let friendExpense = useRef("NaN");
+  let friendExpense = useRef(NaN);
 
   function handleNewValue(event) {
     setBillInputs({ ...billInputs, value: +event.target.value });
@@ -63,6 +63,59 @@ export default function App() {
     else return remainingExpense;
   }
 
+  function calculateOverallExpenses(event) {
+    event.preventDefault();
+    // blocker statement preventing the form from 'submitting' if the friendExpense ffield is invalid i.e. <0
+    if (friendExpense.current === NaN) return;
+
+    // Pulls the selected friend from the friend list.
+    const identifiedFriend = friends.find(
+      (friend) => friend.name === selectedFriend
+    );
+
+    // Gets the index of the selected friend in the friend list.
+    const identifiedFriendIndex = friends.findIndex(
+      (friend) => friend === identifiedFriend
+    );
+
+    // Saves the previously saved balance of the selected friend.
+    const initialBalance = identifiedFriend.balance;
+
+    // If Else statement to choose the correct calculation depending on payer.
+    let amendedFriendExpenses;
+    if (billInputs.billPayer === "You") {
+      amendedFriendExpenses = {
+        ...identifiedFriend,
+        balance: initialBalance + friendExpense.current,
+      };
+    } else {
+      amendedFriendExpenses = {
+        ...identifiedFriend,
+        balance: initialBalance - billInputs.selfExpense,
+      };
+    }
+
+    // Deep copy of friends array with new balance for selected friend.
+    const newFriendsExpenses = [
+      ...friends.slice(0, identifiedFriendIndex),
+      amendedFriendExpenses,
+      ...friends.slice(identifiedFriendIndex + 1),
+    ];
+
+    setFriends(newFriendsExpenses);
+    resetBillInputs();
+  }
+
+  function resetBillInputs() {
+    setBillInputs({
+      ...billInputs,
+      value: 0,
+      selfExpense: 0,
+      billPayer: "You",
+    });
+    friendExpense.current = NaN;
+  }
+
   function addNewFriend(newFriendName, newFriendImg) {
     const newFriend = {
       id: crypto.randomUUID(),
@@ -78,6 +131,7 @@ export default function App() {
 
   function openFriend(event) {
     setSelectedFriend(event.target.value);
+    resetBillInputs();
   }
 
   return (
@@ -111,6 +165,7 @@ export default function App() {
               });
             }}
             currentFriend={selectedFriend}
+            handleBill={calculateOverallExpenses}
           />
         )}
       </section>

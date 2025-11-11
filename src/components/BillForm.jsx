@@ -5,6 +5,7 @@ export default function BillForm({
   friendExpenseRef,
   handlePayer,
   currentFriend,
+  handleBill,
 }) {
   return (
     <form className="bill_form">
@@ -34,7 +35,7 @@ export default function BillForm({
         <input
           className="bill_input"
           type="text"
-          value={friendExpenseRef.current}
+          value={friendExpenseRef.current.toString()}
           disabled
         ></input>
       </div>
@@ -58,7 +59,7 @@ export default function BillForm({
           width: "30%",
           marginBottom: "2rem",
         }}
-        // onClick={handleClick}
+        onClick={handleBill}
       >
         Split Bill
       </button>
