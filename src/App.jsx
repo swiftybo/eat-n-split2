@@ -98,19 +98,21 @@ export default function App() {
         />
       </section>
       <section id="right">
-        <BillForm
-          billDetails={billInputs}
-          handleValue={handleNewValue}
-          handleSelfExpense={handleNewSelfExpense}
-          friendExpenseRef={friendExpense}
-          handlePayer={(event) => {
-            return setBillInputs({
-              ...billInputs,
-              billPayer: event.target.value,
-            });
-          }}
-          currentFriend={selectedFriend}
-        />
+        {selectedFriend && (
+          <BillForm
+            billDetails={billInputs}
+            handleValue={handleNewValue}
+            handleSelfExpense={handleNewSelfExpense}
+            friendExpenseRef={friendExpense}
+            handlePayer={(event) => {
+              return setBillInputs({
+                ...billInputs,
+                billPayer: event.target.value,
+              });
+            }}
+            currentFriend={selectedFriend}
+          />
+        )}
       </section>
     </div>
   );
