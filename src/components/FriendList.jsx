@@ -1,6 +1,6 @@
 import FriendIcon from "./FriendIcon.jsx";
 
-export default function FriendList({ friends, selectFriend }) {
+export default function FriendList({ friends, selectFriend, chosenFriend }) {
   return (
     <>
       {friends.map((friend) => (
@@ -10,6 +10,7 @@ export default function FriendList({ friends, selectFriend }) {
           img={friend.img}
           balance={friend.balance}
           handleClick={selectFriend}
+          currentFriend={friend.name === chosenFriend}
         />
       ))}
     </>

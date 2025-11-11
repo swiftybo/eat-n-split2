@@ -30,8 +30,12 @@ body {
   align-items: center;
 }
 
-.icon:hover {
+.icon.selected {
   background-color: rgb(252, 225, 176);
+}
+
+.icon:hover {
+  background-color: rgb(255, 239, 210);
 }
 
 .profile_pic {

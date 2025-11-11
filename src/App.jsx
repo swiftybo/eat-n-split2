@@ -59,14 +59,14 @@ export default function App() {
 
   function calculateFriendExpense(totalBill, ownExpense) {
     const remainingExpense = totalBill - ownExpense;
-    if (remainingExpense <= 0) return NaN;
+    if (remainingExpense < 0) return NaN;
     else return remainingExpense;
   }
 
   function calculateOverallExpenses(event) {
     event.preventDefault();
     // blocker statement preventing the form from 'submitting' if the friendExpense ffield is invalid i.e. <0
-    if (friendExpense.current === NaN) return;
+    if (!friendExpense.current) return;
 
     // Pulls the selected friend from the friend list.
     const identifiedFriend = friends.find(
@@ -137,7 +137,11 @@ export default function App() {
   return (
     <div className="content">
       <section id="left">
-        <FriendList friends={friends} selectFriend={openFriend} />
+        <FriendList
+          friends={friends}
+          selectFriend={openFriend}
+          chosenFriend={selectedFriend}
+        />
         <AddNewFriendForm
           // function to display new friend name in input field
           handleName={(event) => setNewName(event.target.value)}
