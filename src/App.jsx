@@ -41,8 +41,13 @@ export default function App() {
 
   let friendExpense = useRef(NaN);
 
+  // Function to remove leading zeros and round the number to 2 decimal places
+  function convertNumber(num) {
+    return +(Math.round(num * 100) / 100).toFixed(2);
+  }
+
   function handleNewValue(event) {
-    setBillInputs({ ...billInputs, value: +event.target.value });
+    setBillInputs({ ...billInputs, value: convertNumber(event.target.value) });
     friendExpense.current = calculateFriendExpense(
       +event.target.value,
       billInputs.selfExpense
@@ -50,7 +55,10 @@ export default function App() {
   }
 
   function handleNewSelfExpense(event) {
-    setBillInputs({ ...billInputs, selfExpense: +event.target.value });
+    setBillInputs({
+      ...billInputs,
+      selfExpense: convertNumber(event.target.value),
+    });
     friendExpense.current = calculateFriendExpense(
       billInputs.value,
       +event.target.value
@@ -58,7 +66,7 @@ export default function App() {
   }
 
   function calculateFriendExpense(totalBill, ownExpense) {
-    const remainingExpense = totalBill - ownExpense;
+    const remainingExpense = convertNumber(totalBill - ownExpense);
     if (remainingExpense < 0) return NaN;
     else return remainingExpense;
   }
@@ -86,12 +94,12 @@ export default function App() {
     if (billInputs.billPayer === "You") {
       amendedFriendExpenses = {
         ...identifiedFriend,
-        balance: initialBalance + friendExpense.current,
+        balance: convertNumber(initialBalance + friendExpense.current),
       };
     } else {
       amendedFriendExpenses = {
         ...identifiedFriend,
-        balance: initialBalance - billInputs.selfExpense,
+        balance: convertNumber(initialBalance - billInputs.selfExpense),
       };
     }
 

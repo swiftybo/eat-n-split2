@@ -16,18 +16,24 @@ export default function BillForm({
         <label className="bill_label">💰 Bill Value</label>
         <input
           className="bill_input"
-          type="text"
+          type="number"
+          step="0.01"
           value={billDetails.value}
           onChange={handleValue}
+          min="0"
+          required
         ></input>
       </div>
       <div className="form_field">
         <label className="bill_label">👦 Your expense</label>
         <input
           className="bill_input"
-          type="text"
+          type="number"
+          step="0.01"
           value={billDetails.selfExpense}
           onChange={handleSelfExpense}
+          min="0"
+          required
         ></input>
       </div>
       <div className="form_field">
