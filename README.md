@@ -1,4 +1,4 @@
-# Project Title: Eat-n-Split2 (Expense Tracker)
+# Eat-n-Split2 (Expense Tracker)
 
 ## 🚀 Overview
 A small web application made in React to track expenses between friends. This was one of my first web applications built with React and was used to practice React fundamentals including managing state, React hooks & building reusable components. 
